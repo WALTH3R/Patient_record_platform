@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Medical Records for {{ patient.First_Name }} {{ patient.Last_Name }}</h2>
+<p><strong>Email:</strong> {{ patient.Email }}</p>
+<p><strong>Phone:</strong> {{ patient.Phone_Number }}</p>
+
+<form method="POST" class="form-container">
+  <label for="staff_number">Staff Number</label>
+  <input type="number" id="staff_number" name="staff_number" required>
+
+  <label for="date">Date</label>
+  <input type="date" id="date" name="date" required>
+
+  <label for="diagnostic">Diagnostic</label>
+  <input type="text" id="diagnostic" name="diagnostic" required>
+
+  <label for="medication">Medication</label>
+  <input type="text" id="medication" name="medication" required>
+
+  <button type="submit">Add Medical Record</button>
+</form>
+
+<table>
+  <tr>
+    <th>Record ID</th>
+    <th>Staff Number</th>
+    <th>Date</th>
+    <th>Diagnostic</th>
+    <th>Medication</th>
+  </tr>
+  {% for r in records %}
+  <tr>
+    <td>{{ r.Record_ID }}</td>
+    <td>{{ r.Staff_Number }}</td>
+    <td>{{ r.Date }}</td>
+    <td>{{ r.Diagnostic }}</td>
+    <td>{{ r.Medication }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<a href="{{ url_for('patients') }}">← Back to Patients List</a>
+
+<script>
+  document.getElementById('diagnostic').addEventListener('blur', function () {
+    const diagnostic = this.value;
+    if (diagnostic) {
+      fetch('/suggest_medication', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ diagnostic: diagnostic }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.medication) {
+            document.getElementById('medication').value = data.medication;
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
+  });
+</script>
+{% endblock %}

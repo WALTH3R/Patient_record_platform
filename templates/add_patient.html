@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Add New Patient</h2>
+
+<form method="POST" class="form-container">
+  <label for="first_name">First Name</label>
+  <input type="text" id="first_name" name="first_name" required>
+
+  <label for="last_name">Last Name</label>
+  <input type="text" id="last_name" name="last_name" required>
+
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" required>
+
+  <label for="phone">Phone Number</label>
+  <input type="text" id="phone" name="phone" required>
+
+  <label for="age">Age</label>
+  <input type="number" id="age" name="age" required>
+
+  <label for="sex">Sex</label>
+  <select id="sex" name="sex" required>
+    <option value="">--Select--</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+  </select>
+
+  <label for="blood_type">Blood Type</label>
+  <select id="blood_type" name="blood_type" required>
+    <option value="">--Select--</option>
+    <option value="A+">A+</option>
+    <option value="A-">A-</option>
+    <option value="B+">B+</option>
+    <option value="B-">B-</option>
+    <option value="O+">O+</option>
+    <option value="O-">O-</option>
+    <option value="AB+">AB+</option>
+    <option value="AB-">AB-</option>
+  </select>
+
+  <label for="height">Height (cm)</label>
+  <input type="number" step="0.1" id="height" name="height" required>
+
+  <label for="weight">Weight (kg)</label>
+  <input type="number" step="0.1" id="weight" name="weight" required>
+
+  <button type="submit">Add Patient</button>
+</form>
+
+<a href="{{ url_for('patients') }}">← Back to Patients List</a>
+{% endblock %}

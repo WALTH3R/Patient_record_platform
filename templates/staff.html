@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Staff Members</h2>
+
+<h3>Doctors</h3>
+<table>
+  <tr>
+    <th>Staff Number</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Profession Domain</th>
+  </tr>
+  {% for d in doctors %}
+  <tr>
+    <td>{{ d.Staff_Number }}</td>
+    <td>{{ d.First_Name }} {{ d.Last_Name }}</td>
+    <td>{{ d.Email }}</td>
+    <td>{{ d.Phone_Number }}</td>
+    <td>{{ d.Profession_Domain }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<br>
+
+<h3>Nurses</h3>
+<table>
+  <tr>
+    <th>Staff Number</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Profession Domain</th>
+  </tr>
+  {% for n in nurses %}
+  <tr>
+    <td>{{ n.Staff_Number }}</td>
+    <td>{{ n.First_Name }} {{ n.Last_Name }}</td>
+    <td>{{ n.Email }}</td>
+    <td>{{ n.Phone_Number }}</td>
+    <td>{{ n.Profession_Domain }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}

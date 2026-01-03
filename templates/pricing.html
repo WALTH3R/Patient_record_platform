@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Pricing</h2>
+
+<form method="POST" class="form-container">
+    <label for="staff_number">Staff Number</label>
+    <input type="number" id="staff_number" name="staff_number" required>
+  
+    <label for="first_name">Doctor Name</label>
+    <input type="text" id="first_name" name="first_name" required>
+  
+    <label for="date">Date</label>
+    <input type="date" id="date" name="date" required>
+  
+    <label for="pricing">Pricing ($)</label>
+    <input type="number" id="pricing" name="pricing" required>
+  
+    <label for="description">Description</label>
+    <input type="text" id="description" name="description" required>
+  
+    <button type="submit">Add Payment</button>
+  </form>
+  
+  <hr>
+
+<table>
+  <tr>
+    <th>Payment ID</th>
+    <th>Staff Number</th>
+    <th>Doctor Name</th>
+    <th>Date</th>
+    <th>Pricing</th>
+    <th>Description</th>
+  </tr>
+  {% for p in payments %}
+  <tr>
+    <td>{{ p.Payment_ID }}</td>
+    <td>{{ p.Staff_Number }}</td>
+    <td>{{ p.First_Name }}</td>
+    <td>{{ p.Date }}</td>
+    <td>${{ p.Pricing }}</td>
+    <td>{{ p.Description }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
